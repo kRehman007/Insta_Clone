@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import Home from "./Components/HomePage/Home";
+import Sidebar from "./Components/HomePage/Sidebar";
 
 function App() {
-  return <div className="text-red-600">Insta_Gram</div>;
+  return <Home />;
 }
 
 export default App;
