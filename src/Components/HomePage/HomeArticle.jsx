@@ -26,7 +26,7 @@ const HomeArticle = () => {
               <CiHeart className="text-3xl" />
               <FaRegComment className="text-2xl" />
             </div>
-            <CiBookmark className="text-2xl pr-3" />
+            <CiBookmark className="text-4xl pr-3" />
           </div>
           <span>4000 likes</span>
           <input
