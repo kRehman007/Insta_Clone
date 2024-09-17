@@ -26,9 +26,9 @@ const Signup = () => {
   }, [listenauthstatechanged]);
 
   function SubmitForm(data) {
-    const { email, password } = data;
+    const { email, password, fullname, username } = data;
     console.log(email, password);
-    signup(email, password);
+    signup(email, password, fullname, username);
   }
   return (
     <div

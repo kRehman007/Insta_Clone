@@ -42,7 +42,7 @@ const Sidebar = () => {
               <span className="text-md font-medium cursor-pointer">Create</span>
             </div>
           </NavLink>
-          <NavLink to="/">
+          <NavLink to="/Profile">
             <div className="flex space-x-4 items-center hover:bg-slate-100 px-4 py-2 w-[200px] rounded-sm">
               <CgProfile className="text-2xl" />
               <span className="text-md font-medium cursor-pointer">
@@ -73,7 +73,7 @@ const Sidebar = () => {
         <NavLink to="/">
           <CiHeart className="text-3xl" />
         </NavLink>
-        <NavLink to="/">
+        <NavLink to="/Profile">
           <CgProfile className="text-2xl" />
         </NavLink>
       </div>

@@ -8,7 +8,7 @@ const HomeArticle = () => {
     <div className=" lg:ml-[17vw] lg:p-12 lg:pl-24 pt-32">
       <div className="flex flex-col space-y-3 w-[100vw] lg:w-[400px] h-[min-content] pb-12 ">
         <div className="flex pl-3 lg:pl-0 space-x-2 items-center">
-          <div className="w-11 h-11 border border-red-500 rounded-full">
+          <div className="w-11 h-11 bg-gray-300 rounded-full">
             <img src="" />
           </div>
           <div className="flex space-x-1">

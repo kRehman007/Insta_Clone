@@ -1,18 +1,19 @@
 import { create } from "zustand";
-import { auth } from "../Firebase/Firebase";
+import { auth, firestore } from "../Firebase/Firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 
 const useAuthStore = create((set) => ({
   user: null,
   loading: false,
   error: null,
 
-  signup: async (email, password) => {
+  signup: async (email, password, fullname, username) => {
     set({ loading: true, error: null });
     try {
       const userCredentails = await createUserWithEmailAndPassword(
@@ -20,7 +21,18 @@ const useAuthStore = create((set) => ({
         email,
         password
       );
-      set({ user: userCredentails.user });
+      const userData = {
+        username: username,
+        fullname: fullname,
+        email: email,
+        id: userCredentails.user.uid,
+        followers: [],
+        following: [],
+        posts: [],
+        bio: "",
+      };
+      set({ user: userData });
+      await setDoc(doc(firestore, "users", userData.id), userData);
     } catch (error) {
       set({ error: error.message });
     } finally {
@@ -36,7 +48,14 @@ const useAuthStore = create((set) => ({
         email,
         password
       );
-      set({ user: userCredentails.user });
+
+      const userData = {
+        username: username,
+        fullname: fullname,
+        email: email,
+        id: userCredentails.user.uid,
+      };
+      set({ user: userData });
     } catch (error) {
       console.log(error);
       let errorMessage;
