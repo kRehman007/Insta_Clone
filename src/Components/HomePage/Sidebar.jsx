@@ -7,7 +7,9 @@ import { FaRegHeart } from "react-icons/fa6";
 import { FaRegSquarePlus } from "react-icons/fa6";
 import { CgProfile } from "react-icons/cg";
 import { RiLogoutCircleLine } from "react-icons/ri";
+import useAuthStore from "../Zustand/AuthStore";
 const Sidebar = () => {
+  const { logout } = useAuthStore();
   return (
     <>
       <div className="min-w-[17vw] fixed h-[100vh] border border-r-gray-300  p-6 pt-12 hidden lg:block">
@@ -51,7 +53,9 @@ const Sidebar = () => {
           <NavLink to="/authentication">
             <div className="flex space-x-4 items-center  hover:bg-slate-100 px-4 py-2 w-[200px] rounded-sm absolute bottom-6">
               <RiLogoutCircleLine className="text-2xl" />
-              <span className="text-md font-medium">Logout</span>
+              <span className="text-md font-medium" onClick={logout}>
+                Logout
+              </span>
             </div>
           </NavLink>
         </div>
@@ -64,15 +68,12 @@ const Sidebar = () => {
           <CiSearch className="text-3xl" />
         </NavLink>
         <NavLink to="/">
-          {" "}
           <FaRegSquarePlus className="text-2xl" />
         </NavLink>
         <NavLink to="/">
-          {" "}
           <CiHeart className="text-3xl" />
         </NavLink>
         <NavLink to="/">
-          {" "}
           <CgProfile className="text-2xl" />
         </NavLink>
       </div>

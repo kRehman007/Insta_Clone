@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import logo from "../../../src/assets/images.png";
-import img from "../../../src/assets/auth.png";
+import useAuthStore from "../Zustand/AuthStore";
 const Signup = () => {
+  const navigate = useNavigate();
+  const { user, error, signup, listenauthstatechanged } = useAuthStore();
   const {
     register,
     handleSubmit,
@@ -11,9 +14,21 @@ const Signup = () => {
     formState: { errors, isSubmitting },
   } = useForm();
 
+  useEffect(() => {
+    if (user) {
+      console.log(user);
+      navigate("/");
+    }
+  }, [user, navigate]);
+
+  useEffect(() => {
+    listenauthstatechanged();
+  }, [listenauthstatechanged]);
+
   function SubmitForm(data) {
-    console.log("submitted");
-    console.log(data.email);
+    const { email, password } = data;
+    console.log(email, password);
+    signup(email, password);
   }
   return (
     <div
@@ -74,7 +89,7 @@ const Signup = () => {
             className="border border-gray-200 w-[80%]
           mt-2 rounded-sm bg-gray-100  px-3 py-2 placeholder:text-black text-sm 
           outline-none "
-            placeholder="Username"
+            placeholder="username"
           />
           {errors.username && (
             <div className="text-red-400 text-sm">
@@ -116,7 +131,7 @@ const Signup = () => {
             type="submit"
             className="bg-blue-500 w-[80%] px-3 py-2 rounded-md text-white"
           >
-            Signup
+            {isSubmitting ? "Signing up..." : "Signup"}
           </button>
         </div>
       </form>
